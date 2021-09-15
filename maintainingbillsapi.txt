@@ -1,0 +1,253 @@
+public static void createSupplierBill(){
+        System.out.println("Enter Supplier Bill Information");
+
+        System.out.print(Bill Date : ");
+        String billName = sc.next();
+        System.out.println();
+
+        System.out.print("Bill Price : ");
+        int billPrice = sc.next();
+        System.out.println();
+
+
+        try{
+            stmt = conn.createStatement();
+            stmt.executeUpdate("INSERT INTO Bills (billingDate, billingPrice) VALUES (\"" + billingDate + "\", " + billingPrice + ")");
+
+            stmt.close();
+            conn.close();
+        }catch(Throwable oops){
+            oops.printStackTrace();
+        }
+        
+
+    }
+
+public static void updateSupplierBill(){
+
+        System.out.println("Choose field to Update Supplier Bill");
+ 	System.out.println("1: Bill Date");
+	System.out.println("2: Bill Price");
+       
+
+        while(flag){
+	        switch(option){
+
+		case 1:
+                    try{
+                        
+                        System.out.print("Enter the Bill Date : ");
+                        String bill_date = sc.next();
+                        stmt = conn.createStatement();
+                        stmt.executeUpdate("UPDATE Bill SET billDate = " + bill_date + " Bill WHERE billDate = " + bill_date);
+                        
+                        stmt.close();
+                        conn.close();
+                    }catch(Throwable oops){
+                        oops.printStackTrace();
+                    }
+                    break;
+		case 2:
+                    try{
+                        
+                        System.out.print("Enter the Bill Price : ");
+                        int bill_price = sc.nextInt();
+                        stmt = conn.createStatement();
+                        stmt.executeUpdate("UPDATE Bill SET billPrice = " + bill_price + " Bill WHERE bill_price = " + billPrice);
+                        
+                        stmt.close();
+                        conn.close();
+                    }catch(Throwable oops){
+                        oops.printStackTrace();
+                    }
+	
+		    break;
+
+
+            System.out.print("Do you wish to update anything else ? [y/n] : ");
+            char c = nextChar();
+            if(c == 'y' || c == 'Y'){
+                continue;
+            }else if(c == 'n' || c == 'N'){
+                flag = 0;
+            }else{
+                System.out.println("Wrong input!! Please run the code again...");
+            }
+        }
+
+    }
+
+
+
+//public static void deleteSupplierBill(){
+	System.out.println("Delete Order");
+
+	System.out.print("Order ID : ");
+        int orderID = sc.next();
+        System.out.println();
+
+	try{
+            stmt = conn.createStatement();
+		//PLEASE CHECK HERE: //
+            //stmt.executeUpdate("DELETE from Bills WHERE orderID VALUES (" + orderID + ")");//
+
+            stmt.close();
+            conn.close();
+        }catch(Throwable oops){
+            oops.printStackTrace();
+        }
+
+    }//
+
+
+public static void generateRewardChecks(){
+	System.out.println("Generate Reward Checks");
+
+	System.out.print("Customer ID : ");
+        int customerID = sc.next();
+        System.out.println();
+
+        System.out.print("Reward Percentage : ");
+        String rewardPercentage = sc.next();
+        System.out.println();
+
+
+        try{
+            stmt = conn.createStatement();
+		//PLEASE CHECK HERE//
+            //stmt.executeUpdate("SELECT  (customerID, rewardPercentage) VALUES (" + customerID + "," + rewardPercentage + ")");//
+
+//Select  customerID, SUM(TotalPrice * 0.02) AS REWARDS  FROM Transactions   where (customerID=125 AND purchaseDate BETWEEN ‘2005-1-2’ AND ‘2015-10-05’;//
+
+            stmt.close();
+            conn.close();
+        }catch(Throwable oops){
+            oops.printStackTrace();
+        }
+        
+
+    }
+
+public static void createTransactions(){ 
+	System.out.println("Create Transaction");
+
+	System.out.print("Store ID : ");
+        int storeID = sc.next();
+        System.out.println();
+
+        System.out.print("Customer ID : ");
+        int customerID = sc.next();
+        System.out.println();
+
+	System.out.print("Cashier ID : ");
+        int cashierID = sc.next();
+        System.out.println();
+
+	System.out.print("Purchase Date : ");
+        String purchaseDate = sc.next();
+        System.out.println();
+
+	System.out.print("Total Price : ");
+        int totalPrice = sc.next();
+        System.out.println();
+
+	
+        try{
+            stmt = conn.createStatement();
+            stmt.executeUpdate("INSERT INTO Transactions (storeID, customerID, cashierID, purchaseDate, totalPrice) VALUES (" + storeID + "," + customerID + ", " + cashierID + ", \"" + purchaseDate + "\", " + totalPrice + ")");
+
+            stmt.close();
+            conn.close();
+        }catch(Throwable oops){
+            oops.printStackTrace();
+        }
+        
+
+    }
+
+public static void updateTransactions(){
+
+        System.out.println("Choose field to Update Transaction");
+ 	System.out.println("1: Purchase Date");
+	System.out.println("2: Total Price");
+
+       
+
+        while(flag){
+	        switch(option){
+
+		case 1:
+                    try{
+                        
+                        System.out.print("Enter the Purchase Date : ");
+                        String trans_date = sc.next();
+                        stmt = conn.createStatement();
+                        stmt.executeUpdate("UPDATE Transactions SET purchaseDate = " + trans_date + " Bill WHERE purchaseDate = " + trans_date);
+                        
+                        stmt.close();
+                        conn.close();
+                    }catch(Throwable oops){
+                        oops.printStackTrace();
+                    }
+                    break;
+		case 2:
+                    try{
+                        
+                        System.out.print("Enter the Total Price : ");
+                        int trans_price = sc.nextInt();
+                        stmt = conn.createStatement();
+                        stmt.executeUpdate("UPDATE Transactions SET totalPrice = " + trans_price + " Bill WHERE trans_price = " + totalPrice);
+                        
+                        stmt.close();
+                        conn.close();
+                    }catch(Throwable oops){
+                        oops.printStackTrace();
+                    }
+	
+		    break;
+
+
+            System.out.print("Do you wish to update anything else ? [y/n] : ");
+            char c = nextChar();
+            if(c == 'y' || c == 'Y'){
+                continue;
+            }else if(c == 'n' || c == 'N'){
+                flag = 0;
+            }else{
+                System.out.println("Wrong input!! Please run the code again...");
+            }
+        }
+
+
+       
+
+//public static void deleteTransaction(){
+	System.out.println("Delete Transaction");
+
+	System.out.print("Transaction ID : ");
+        String transactionID = sc.next();
+        System.out.println();
+
+	try{
+            stmt = conn.createStatement();
+		//please check here//
+            //stmt.executeUpdate("INSERT INTO Transactions (transactionID) VALUES (\"" + transactionID + "\"")");//
+
+            stmt.close();
+            conn.close();
+        }catch(Throwable oops){
+            oops.printStackTrace();
+        }
+
+    }//
+
+
+
+
+
+
+
+
+
+
+

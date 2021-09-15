@@ -1,0 +1,128 @@
+public static void addDiscount(){
+        System.out.println("Enter Discount Information");
+
+        System.out.print("Product ID : ");
+        int productID = sc.nextInt();
+        System.out.println();
+
+        System.out.print("Store ID: ");
+        int storeID= sc.nextInt();
+        System.out.println();
+
+	System.out.print("Discount Percentage: ");
+        int discountPercentage = sc.nextInt();
+        System.out.println();
+
+	System.out.print("Start Date: ");
+        String startDate = sc.next();
+        System.out.println();
+	
+	System.out.print("End Date: ");
+        String endDate = sc.next();
+        System.out.println();
+
+        try{
+            stmt = conn.createStatement();
+            stmt.executeUpdate("INSERT INTO Discount (productID, storeID, DiscountPercentage, startDate, endDate) VALUES (" + productID + ", " + storeID + ", \"" + discountPercentage + "\, \"" + startDate + "\",  \"" + endDate + "\")");
+
+            stmt.close();
+            conn.close();
+        }catch(Throwable oops){
+            oops.printStackTrace();
+        }
+        
+
+    }
+
+public static void updateDiscount(){
+         System.out.println("Choose field to Update Discount");
+ 	System.out.println("1: Discount Percentage");
+	System.out.println("2: Start Date");
+	System.out.println("2: End Date");
+
+       
+
+        while(flag){
+	        switch(option){
+
+		case 1:
+                    try{
+                        
+                        System.out.print("Enter the Discount Percentage : ");
+                        int disc_percentage = sc.nextInt();
+                        stmt = conn.createStatement();
+                        stmt.executeUpdate("UPDATE Discount SET discountPercentage = " + disc_percentage + " Discount WHERE discountPercentage = " + disc_percentage);
+                        
+                        stmt.close();
+                        conn.close();
+                    }catch(Throwable oops){
+                        oops.printStackTrace();
+                    }
+                    break;
+		case 2:
+                    try{
+                        
+                        System.out.print("Enter the Start Date : ");
+                        String start_date = sc.next();
+                        stmt = conn.createStatement();
+                        stmt.executeUpdate("UPDATE Discount SET startDate = " + start_date + " Discount WHERE startDate = " + start_date);
+                        
+                        stmt.close();
+                        conn.close();
+                    }catch(Throwable oops){
+                        oops.printStackTrace();
+                    }
+		case 3:
+                    try{
+                        
+                        System.out.print("Enter the End Date : ");
+                        String end_date = sc.next();
+                        stmt = conn.createStatement();
+                        stmt.executeUpdate("UPDATE Discount SET endDate = " + end_date + " Discount WHERE endDate = " + end_date);
+                        
+                        stmt.close();
+                        conn.close();
+                    }catch(Throwable oops){
+                        oops.printStackTrace();
+                    }
+
+	
+		    break;
+
+
+            System.out.print("Do you wish to update anything else ? [y/n] : ");
+            char c = nextChar();
+            if(c == 'y' || c == 'Y'){
+                continue;
+            }else if(c == 'n' || c == 'N'){
+                flag = 0;
+            }else{
+                System.out.println("Wrong input!! Please run the code again...");
+            }
+        }
+
+    }
+
+
+
+       
+
+//public static void deleteDiscount(){
+	System.out.println("Delete Discount");
+
+	System.out.print("Discount ID : ");
+        int  discount_ID = sc.next();
+        System.out.println();
+
+	try{
+            stmt = conn.createStatement();
+	//PLEASE CHECK//
+           //stmt.executeUpdate("DELETE Discount (discountID) VALUES (" + discount_ID ")");//
+
+            stmt.close();
+            conn.close();
+        }catch(Throwable oops){
+            oops.printStackTrace();
+        }
+
+    }//
